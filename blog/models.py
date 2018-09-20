@@ -20,10 +20,10 @@ class UserProfile(models.Model):
 
     email = models.EmailField()
     password = models.CharField(max_length=64)
-    nick_name = models.CharField(max_length=12)
+    nick_name = models.CharField(max_length=64)
     gender_choice = (('女', 0),
                      ('男', 1))
-    gender = models.CharField(max_length=5, choices=gender_choice)
+    gender = models.CharField(max_length=5, choices=gender_choice, null=True, blank=True)
 
     class META:
         verbose_name = '用户信息'

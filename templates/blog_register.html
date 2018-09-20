@@ -34,16 +34,15 @@
   <body>
 
     <div class="container">
-
       <form class="form-register" method="post" action="/blog/register">
+        {% csrf_token %}
         <h2 class="form-register-heading">邮箱注册</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="常用邮箱" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="输入密码" required="">
-        <label for="repeatPassword" class="sr-only">Password</label>
-        <input type="password" id="repeatPassword" class="form-control" placeholder="重复密码" required="">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="常用邮箱" required="" autofocus="">
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="输入密码" required="">
+        <input name="password2" type="password" id="repeatPassword" class="form-control" placeholder="重复密码" required="" style="margin-bottom: -1px;">
+        <input name="validate" type="text" id="validate" class="form-control" placeholder="获取验证码" required="" style="margin-bottom: 20px;">
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="get-validate">获取验证码</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" style="display: none;" id="register">注册</button>
       </form>
 
     </div> <!-- /container -->
@@ -51,6 +50,30 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+    <script src="/static/js/jquery.min.js"></script>
+    <script>
+    <!--发送验证码及提交注册表单-->
+        $("#get-validate").click(function(){
+            var email = $("#inputEmail").val();
+            var password = $("#inputPassword").val();
+            var password2 = $("#repeatPassword").val();
+            if (email != null){
+                $.ajaxSetup({
+                    data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                });
+                $.ajax({
+                    url: "/blog/register",
+                    type: "post",
+                    data: {"ajax_email": email},
+                    success: function(data){
+                        $("#get-validate").hide();
+                        $("#register").show();
+                    }
+                });
+            };
+        });
+
+    </script>
   
 
 </body></html>
