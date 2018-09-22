@@ -9,138 +9,40 @@
     <meta name="author" content="">
     <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
 
-
     <title>
     {% block title %}
 
     {% endblock %}
     </title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/static/css/blog.css" rel="stylesheet">
-
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="/static/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="/static/js/ie-emulation-modes-warning.js"></script>
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
 
   <body style="background-color: #f6f6f6;">
-    <div class="blog-masthead" style="background-color: white;">
+  <div class="blog-masthead" style="background-color: white;">
       <nav class="blog-nav">
-        <div class="container">
-          <a class="blog-nav-title" href="https://v3.bootcss.com/examples/blog/#" style="font-size: 20px !important; font-height: 500; text-align: center !important; margin-top: 0px;">轻博客</a>
-          <a class="blog-nav-item active" href="https://v3.bootcss.com/examples/blog/#" style="margin-top: 10px;">热点博客</a>
-          <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">关注博客</a>
-          <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">我的博客</a>
-          <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#" style="float: right; margin-right: 1px;">{{ username }}</a>
-        </div>
+        <a class="blog-nav-title" href="https://v3.bootcss.com/examples/blog/#">轻博客</a>
+        <a class="blog-nav-item active" href="https://v3.bootcss.com/examples/blog/#">热点博客</a>
+        <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">关注博客</a>
+        <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">我的博客</a>
+        <a class="blog-nav-user" href="https://v3.bootcss.com/examples/blog/#">{{ user_info.nick_name }}</a>
       </nav>
     </div>
-    <div class="container">
+  {% block page %}
 
-      <div class="blog-header" style="background-color: white; margin-top: 20px; margin-bottom: 20px; width: 72%;">
-        <button>上次看到</button>
-        <button>草稿</button>
-      </div>
-
-      <div class="row" style="margin-top: 400px;">
-
-        <div class="col-sm-8 blog-main">
-
-          <div class="blog-post" style="background-color: white; width: 110%; padding: 20px;">
-            <div class="blog-post-author">
-                <img src="">
-                <a>lixiansen</a>
-            </div>
-            <h5 class="blog-post-title">博客标题</h5>
-            <p class="blog-post-meta">January 1, 2014 by <a href="https://v3.bootcss.com/examples/blog/#">Mark</a></p>
-
-            <p>测试博客内容.测试博客内容.测试博客内容.</p>
-            <hr>
-            <div class="blog-post-box">
-              <div class="blog-post-button"><a>点赞</a></div>
-              <div class="blog-post-button"><a>反对</a></div>
-              <div class="blog-post-button"><a>评论</a></div>
-              <div class="blog-post-button"><a>收藏</a></div>
-              <div class="blog-post-button"><a>分享</a></div>
-            </div>
-          </div><!-- /.blog-post -->
-
-          <div class="blog-post" style="background-color: white; width: 110%; padding: 20px;">
-            <div class="blog-post-author">
-                <img src="">
-                <a>lixiansen</a>
-            </div>
-            <h5 class="blog-post-title">博客标题</h5>
-            <p class="blog-post-meta">January 1, 2014 by <a href="https://v3.bootcss.com/examples/blog/#">Mark</a></p>
-
-            <p>测试博客内容.测试博客内容.测试博客内容.</p>
-            <hr>
-            <div class="blog-post-box">
-              <div class="blog-post-button"><a>点赞</a></div>
-              <div class="blog-post-button"><a>反对</a></div>
-              <div class="blog-post-button"><a>评论</a></div>
-              <div class="blog-post-button"><a>收藏</a></div>
-              <div class="blog-post-button"><a>分享</a></div>
-            </div>
-          </div><!-- /.blog-post -->
-
-          <nav>
-            <ul class="pager">
-              <li><a href="https://v3.bootcss.com/examples/blog/#">Previous</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">Next</a></li>
-            </ul>
-          </nav>
-
-        </div><!-- /.blog-main -->
-
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset" style="background-color: white;">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="sidebar-module" style="background-color: white;">
-            <h4>Archives</h4>
-            <ol class="list-unstyled">
-              <li><a href="https://v3.bootcss.com/examples/blog/#">March 2014</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">February 2014</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">January 2014</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">December 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">November 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">October 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">September 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">August 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">July 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">June 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">May 2013</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">April 2013</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Elsewhere</h4>
-            <ol class="list-unstyled">
-              <li><a href="https://v3.bootcss.com/examples/blog/#">GitHub</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">Twitter</a></li>
-              <li><a href="https://v3.bootcss.com/examples/blog/#">Facebook</a></li>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
-
-      </div><!-- /.row -->
-
-    </div><!-- /.container -->
+  {% endblock %}
 
     <footer class="blog-footer">
       <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
@@ -149,7 +51,7 @@
       </p>
     </footer>
 
-
+  </div>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

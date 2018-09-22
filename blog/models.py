@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
+import json
 
 '''数据库模型  Article(文章表)'''
 
@@ -15,6 +16,9 @@ class Article(models.Model):
     class META:
         verbose_name = '文章'
 
+    def __unicode__(self):
+        return self.title
+
 
 class UserProfile(models.Model):
 
@@ -25,8 +29,11 @@ class UserProfile(models.Model):
                      ('男', 1))
     gender = models.CharField(max_length=5, choices=gender_choice, null=True, blank=True)
 
-    class META:
-        verbose_name = '用户信息'
+    def __unicode__(self):
+        return unicode(self.email)
+
+    def to_json(self):
+        return json.dumps(dict([(attr, getattr(self, attr)) for attr in [f.name for f in self._meta.fields]]))
 
 
 class Comment(models.Model):

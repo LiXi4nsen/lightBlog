@@ -19,6 +19,7 @@ import views
 
 urlpatterns = [
     url(r'^$', views.blog_index),
-    url(r'register', views.blog_register),
+    url(r'register$', views.blog_register),
+    url(r'login$', views.blog_login, name='login'),
     url(r'test', views.test),
 ]

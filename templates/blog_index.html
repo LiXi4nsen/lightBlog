@@ -1,3 +1,51 @@
 {% extends 'blog_base.html' %}
 
 {% block title %} 博客首页 {% endblock %}
+
+{% block page %}
+  <div class="page-box">
+    <div class="right-block">
+
+    </div>
+    <div class="post-box">
+      <div class="blog-header" style="background-color: white;">
+        <a>上次看到</a>
+        <a>草稿</a>
+      </div>
+
+      <div class="row">
+
+        <div class="blog-main">
+        {% for article in articles %}
+          <div class="blog-post">
+            <div class="blog-post-author">
+                <img src="" class="blog-post-avatar">
+                <a>{{ article.author }}</a>
+            </div>
+            <p class="blog-post-title">{{ article.title }}</p>
+            <p class="blog-post-meta">{{ article.create_time }}</p>
+
+            <a href="">{{ article.content }}</a>
+            <p></p>
+            <hr>
+            <div class="blog-post-box">
+              <div class="blog-post-button"><a>点赞</a></div>
+              <div class="blog-post-button"><a>反对</a></div>
+              <div class="blog-post-button"><a>评论</a></div>
+              <div class="blog-post-button"><a>收藏</a></div>
+              <div class="blog-post-button"><a>分享</a></div>
+            </div>
+          </div><!-- /.blog-post -->
+        {% endfor %}
+        <nav>
+          <ul class="pager">
+            <li><a href="https://v3.bootcss.com/examples/blog/#">Previous</a></li>
+            <li><a href="https://v3.bootcss.com/examples/blog/#">Next</a></li>
+          </ul>
+        </nav>
+        </div><!-- /.blog-main -->
+
+      </div>
+    </div>
+  </div>
+{% endblock %}
