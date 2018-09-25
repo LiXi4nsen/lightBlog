@@ -11,6 +11,7 @@ from utils import EmailSender
 from utils import VerificationCode
 from utils import AuthIt
 import json
+import random
 
 
 validate_dict = {}
@@ -27,9 +28,16 @@ def blog_index(request):
             return render(request, 'blog_index.html', {'user_info': user_info,
                                                        'articles': articles})
         else:
-            return render(request, 'blog_index.html', {'user_info': user_info,
-                                                       'articles': articles})
+            return render(request, 'blog_index.html', {'articles': articles})
 
+
+def user_article(request, nick_name):
+
+    if request.method == 'GET':
+        user_info = json.loads(request.session.get(request.COOKIES.get('login_cookie', None), None))
+        articles = models.Article.objects.filter(author=user_info.get('id'))
+        return render(request, 'user_articles.html', {'user_info': user_info,
+                                                      'articles': articles})
 
 
 # 注册博客
@@ -66,9 +74,12 @@ def blog_register(request):
                 user_info = register_form.clean()
                 if user_info.get('password') == user_info.get('password2'):
                     if request.POST.get('validate') == request.session[str(user_info.get('email')+' register')]:
+                        default_avatar_number = random.randint(1, 14)
                         user = models.UserProfile.objects.create(email=user_info.get('email'),
                                                                  password=make_password(user_info.get('password')),
-                                                                 nick_name=user_info.get('email'))
+                                                                 nick_name=user_info.get('email'),
+                                                                 avatar='/static/img/avatar/user_default_avatar' +
+                                                                        str(default_avatar_number) + '.jpg')
                         user.save()
         return redirect('/blog')
 
@@ -109,7 +120,7 @@ def blog_login(request):
                         # 调用COOKIES生成工具，设置登陆状态cookie
                         login_cookie = AuthIt().login_cookie()
                         rep = redirect('/blog')
-                        rep.set_cookie('login_cookie', login_cookie, max_age=3600)
+                        rep.set_cookie('login_cookie', login_cookie, max_age=36000)
                         # 将用户信息放入session中
                         request.session[login_cookie] = models.UserProfile.objects.get(email=email).to_json()
                         return rep

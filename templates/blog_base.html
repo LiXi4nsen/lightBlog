@@ -19,6 +19,8 @@
     <link href="/static/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/static/css/blog.css" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="/static/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="/static/js/ie-emulation-modes-warning.js"></script>
@@ -33,11 +35,15 @@
   <body style="background-color: #f6f6f6;">
   <div class="blog-masthead" style="background-color: white;">
       <nav class="blog-nav">
-        <a class="blog-nav-title" href="https://v3.bootcss.com/examples/blog/#">轻博客</a>
-        <a class="blog-nav-item active" href="https://v3.bootcss.com/examples/blog/#">热点博客</a>
+        <a class="blog-nav-title" href="/blog">轻博客</a>
+        <a class="blog-nav-item" href="/blog">热点博客</a>
         <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">关注博客</a>
-        <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">我的博客</a>
-        <a class="blog-nav-user" href="https://v3.bootcss.com/examples/blog/#">{{ user_info.nick_name }}</a>
+        <a class="blog-nav-item" href="/blog/user/{{ user_info.nick_name }}">我的博客</a>
+        {% if user_info %}
+            <a class="blog-nav-user" href="https://v3.bootcss.com/examples/blog/#">{{ user_info.nick_name }}</a>
+        {% else %}
+            <a class="blog-nav-user" href="/blog/login">登陆</a>
+        {% endif %}
       </nav>
     </div>
   {% block page %}
@@ -60,6 +66,16 @@
     <script src="/static/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".blog-nav-item").each(function(){
+                $this = $(this);
+                if($this[0].href==String(window.location)){
+                    $this.addClass("active");  //hover表示被选中效果的类名
+                }
+            });
+        });
+    </script>
 
 
   </body>

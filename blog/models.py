@@ -28,6 +28,7 @@ class UserProfile(models.Model):
     gender_choice = (('女', 0),
                      ('男', 1))
     gender = models.CharField(max_length=5, choices=gender_choice, null=True, blank=True)
+    avatar = models.URLField(default='/static/img/avatar/user_default_avatar1.jpg')
 
     def __unicode__(self):
         return unicode(self.email)

@@ -1,7 +1,3 @@
-/*
- * Globals
- */
-
 body {
   font-family: inherit, "Times New Roman", Times, serif;
 }
@@ -95,24 +91,88 @@ body a{
   width: 65%;
   margin-left: 10px;
 }
-.blog-header {
+.user-profile {
+  margin-left: 10px;
   margin-top: 10px;
-  height: 48px;
+  height: 250px;
+  position: relative;
+  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  border-radius: 4px;
+}
+.background{
+  height: 140px;
+  width: 99.5%;
+  margin-left: 2px;
+  background-color: #999;
+  position: absolute;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
 }
+.avatar-border{
+  width: 166px;
+  height: 166px;
+  background-color: white;
+  position: relative;
+  margin-left: 20px;
+  margin-top: 60px;
+  border-radius: 4px;
+}
+.user-profile img{
+  margin-left: 3px;
+  margin-top: 3px;
+  width: 160px;
+  height: 160px;
+  border-radius: 4px;
+  position: absolute;
 
-.blog-header a {
+}
+.user-nick-name{
+  margin-left: 200px;
+  margin-top: -80px;
+  font-size: 30px;
+}
+.user-profile-nav{
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  z-index: 10;
+  margin-bottom: -25px;
+  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+}
+.user-profile-nav div{
   float: left;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 6px;
+}
+.nav-button a{
+  display: inline-block;
+  margin-top: 4px;
+}
+.is-active{
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: bold;
+}
+.blog-header a {
+    float: left;
+    margin-left: 46px;
+    margin-top: 10px;
+    color: #337ab7;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 .blog-header a:hover,
 .blog-header a:focus {
-    font-weight: bold;
+    color: #333;
 }
 
 /*
@@ -148,6 +208,7 @@ body a{
   padding: 20px;
   -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  border-radius: 4px;
 }
 .blog-post-author {
   float: right;
@@ -186,12 +247,42 @@ body a{
   margin-bottom: 30px;
 }
 .right-block {
+  margin-top: 10px;
   width: 33%;
   height: 500px;
   float: right;
   background-color: white;
   -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  border-radius: 4px;
+}
+.edit-button{
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    border-radius: 3px;
+    margin-left: 880px;
+}
+.write-button{
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    border-radius: 3px;
+    float: right;
+    margin-right: 40px;
+    margin-top: 8px;
 }
 
 

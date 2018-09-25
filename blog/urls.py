@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$', views.blog_index),
     url(r'register$', views.blog_register),
     url(r'login$', views.blog_login, name='login'),
+    url(r'user/(.+?)', views.user_article, name='user-article'),
     url(r'test', views.test),
 ]

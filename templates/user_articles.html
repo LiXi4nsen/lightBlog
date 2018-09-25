@@ -1,21 +1,47 @@
 {% extends 'blog_base.html' %}
 
-{% block title %} 轻博客 {% endblock %}
+{% block title %} {{ user_info.nick_name }} {% endblock %}
+
+{% block css %}
+  <link href="/static/css/user_articles.css" rel="stylesheet">
+{% endblock %}
 
 {% block page %}
   <div class="page-box">
+
+
+    <div class="user-profile" style="background-color: white;">
+      <div class="background">
+        <div class="avatar-border">
+          <img src="{{ user_info.avatar }}">
+        </div>
+        <div class="user-nick-name">
+          <a>{{ user_info.nick_name }}</a>
+        </div>
+        <button class="edit-button">
+          编辑个人资料
+        </button>
+      </div>
+    </div>
+
     <div class="right-block">
 
     </div>
+
     <div class="post-box">
-      <div class="blog-header" style="background-color: white;">
-        <a>上次看到</a>
-        <a>草稿</a>
-      </div>
 
       <div class="row">
 
         <div class="blog-main">
+          <div class="user-profile-nav">
+            <div class="nav-button is-active"><a>博客</a></div>
+            <div class="nav-button"><a>评论</a></div>
+            <div class="nav-button"><a>关注</a></div>
+            <div class="nav-button"><a>收藏</a></div>
+            <button class="write-button">写博客</button>
+          </div>
+        <br>
+
         {% for article in articles %}
           <div class="blog-post">
             <div class="blog-post-author">
