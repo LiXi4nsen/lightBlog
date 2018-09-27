@@ -2,94 +2,24 @@
  * Globals
  */
 
-body {
-  font-family: inherit, "Times New Roman", Times, serif;
-}
-body a{
-  text-decoration: none;
-}
-
 /*
  * Override Bootstrap's default container.
  */
-
-@media (min-width: 1200px) {
-  .container {
-    width: 970px;
-  }
-}
 .page-box {
-  width: 55%;
+  width: 1037px;
   margin: auto;
 }
 
 /*
  * Masthead for nav
  */
-.blog-masthead {
-  margin: auto;
-  background-color: #428bca;
-  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
-          box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
-  height: 48px;
-}
 
 /* Nav links */
-.blog-nav {
-  width: 55%;
-  margin: auto;
-}
-.blog-nav-item {
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-  font-weight: 500;
-  font-size: 50;
-  color: #8590a6;
-}
-.blog-nav-title {
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-  font-weight: 500;
-  font-size: 20px;
-  color: #8590a6;
-}
-.blog-nav-user {
-  position: relative;
-  display: inline-block;
-  padding: 10px;
-  font-weight: 500;
-  font-size: 15px;
-  color: #8590a6;
-  float: right;
-  margin-right: 40px;
-}
-.blog-nav-item:hover,
-.blog-nav-item:focus {
-  color: #3D3D3D;
-  text-decoration: none;
-}
-
-/* Active state gets a caret at the bottom */
-.blog-nav .active {
-  color: #444;
-}
-.blog-nav .active:after {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 0;
-  margin-left: -5px;
-  vertical-align: middle;
-  content: " ";
-  border-right: 5px solid transparent;
-  border-bottom: 5px solid;
-  border-left: 5px solid transparent;
-}
 .blog-post-sum {
   width: 98%;
+}
+.blog-post-sum a{
+  color: black;
 }
 .post-box, blog-main{
   width: 65%;
@@ -98,8 +28,7 @@ body a{
 .blog-header {
   margin-top: 10px;
   height: 48px;
-  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
-          box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
 }
 
 .blog-header a {
@@ -146,8 +75,7 @@ body a{
   margin-top: 10px;
   background-color: white;
   padding: 20px;
-  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
-          box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
 }
 .blog-post-author {
   float: right;
@@ -171,6 +99,7 @@ body a{
   margin-top: 1px;
   font-size: 25px;
   width: 60%;
+  color: black;
 }
 .blog-post-meta {
   margin-bottom: 20px;
@@ -186,12 +115,13 @@ body a{
   margin-bottom: 30px;
 }
 .right-block {
-  width: 33%;
+  width: 300px;
   height: 500px;
-  float: right;
+  margin-left: 700px;
+  position: absolute;
   background-color: white;
-  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
-          box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
+  z-index: 2;
 }
 
 

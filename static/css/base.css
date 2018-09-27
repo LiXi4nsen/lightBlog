@@ -1,0 +1,132 @@
+body {
+  font-family: inherit, "Times New Roman", Times, serif;
+  margin-top: -5px;
+  margin-left: 0px;
+}
+body a{
+  text-decoration: none;
+}
+body li{
+  list-style-type:none;
+}
+
+.fixed-ctrl {
+  position: fixed;
+  width: 1903px;
+  z-index: 100;
+}
+.fixed-fixed {
+  padding-top: 48px;
+}
+.blog-masthead {
+  background-color: #428bca;
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
+  height: 48px;
+  position: relative;
+}
+.blog-nav {
+  width: 1037px;;
+  margin: auto;
+}
+.blog-nav-item {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 50;
+  color: #8590a6;
+}
+.blog-nav-title {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 20px;
+  color: #8590a6;
+}
+.blog-nav-user {
+  position: relative;
+  display: inline-block;
+  padding: 10px;
+  margin-top: 4px;
+  font-weight: 500;
+  font-size: 15px;
+  color: #8590a6;
+  float: right;
+  margin-right: 40px;
+}
+.blog-nav-item:hover,
+.blog-nav-item:focus {
+  color: #3D3D3D;
+  text-decoration: none;
+}
+
+/* Active state gets a caret at the bottom */
+.blog-nav .active {
+  color: #444;
+}
+.blog-nav .active:after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin-left: -5px;
+  vertical-align: middle;
+  content: " ";
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid;
+  border-left: 5px solid transparent;
+}
+
+.blog-nav-ctrl {
+  width: 120px;
+  height: 120px;
+  margin-left: 1320px;
+  position: fixed;
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(26,26,26,.1);
+  border: 1px solid rgba(23,23,23,.1);
+  z-index: 10;
+  margin-top: 7px;
+  border-radius: 4px;
+}
+.home-page-icon {
+  width: 20px;
+  height: 20px;
+  vertical-align:middle;
+  padding-bottom: 3px;
+  padding-left: 10px;
+}
+.user-ctrl-ul {
+  margin-top: 5px;
+  margin-left: -30px;
+}
+.blog-nav-ctrl li{
+  width: 110px;
+  height: 25px;
+  padding: 5px;
+  margin-left: -10px;
+}
+.blog-nav-ctrl a{
+  display: inline-block;
+  font-size: 15px;
+  color: #8590a6;
+}
+.user-ctrl-li:hover,
+.user-ctrl-li:focus {
+  background-color: #f6f6f6;
+}
+.nav-triangle {
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid white;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    margin-top: -8px;
+    margin-left: 50px;
+}
+
+.hide {
+  display: none;
+}

@@ -126,8 +126,13 @@ def blog_login(request):
                         return rep
 
 
+def blog_logout(request):
 
+    login_session = request.COOKIES.get('login_cookie', None)
+    print request.session[login_session]
+    del request.session[login_session]
 
+    return redirect('/blog/login')
 
 
 def test(request):

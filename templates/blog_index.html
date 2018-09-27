@@ -2,6 +2,10 @@
 
 {% block title %} 轻博客 {% endblock %}
 
+{% block css %}
+  <link href="/static/css/blog.css" rel="stylesheet">
+{% endblock %}
+
 {% block page %}
   <div class="page-box">
     <div class="right-block">
@@ -22,9 +26,9 @@
                 <img src="{{ article.author.avatar }}" class="blog-post-avatar">
                 <a>{{ article.author.nick_name }}</a>
             </div>
-            <p class="blog-post-title">{{ article.title }}</p>
+            <a class="blog-post-title" href="" target="_blank">{{ article.title }}</a>
             <p class="blog-post-meta">{{ article.create_time }}</p>
-            <div class="blog-post-sum"><a href="">{{ article.content }}</a></div>
+            <div class="blog-post-sum"><a href="" target="_blank">{{ article.content }}...</a></div>
             <p></p>
             <hr>
             <div class="blog-post-box">
