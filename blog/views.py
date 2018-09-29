@@ -10,6 +10,7 @@ from forms import LoginForm
 from utils import EmailSender
 from utils import VerificationCode
 from utils import AuthIt
+from utils import check_cookie
 import json
 import random
 
@@ -31,13 +32,23 @@ def blog_index(request):
             return render(request, 'blog_index.html', {'articles': articles})
 
 
-def user_article(request, nick_name):
+@check_cookie
+def user_article(request, *args):
 
     if request.method == 'GET':
         user_info = json.loads(request.session.get(request.COOKIES.get('login_cookie', None), None))
         articles = models.Article.objects.filter(author=user_info.get('id'))
         return render(request, 'user_articles.html', {'user_info': user_info,
                                                       'articles': articles})
+
+
+@check_cookie
+def article_detail(request, article_id):
+    if request.method == 'GET':
+        article = models.Article.objects.filter(id=article_id).first()
+        user_info = json.loads(request.session.get(request.COOKIES.get('login_cookie', None), None))
+        return render(request, 'article_detail.html', {'user_info': user_info,
+                                                       'article': article})
 
 
 # 注册博客

@@ -74,11 +74,15 @@ class AuthIt(object):
             self.cookie += char
         return self.cookie
 
-    # 验证登陆状态
-    def check_cookie(self):
-        if self.request.COOKIES.get('login_cookie') in self.request.session:
-            pass
+
+def check_cookie(func):
+
+    def inner(request, *args, **kwargs):
+        if request.COOKIES.get('login_cookie', None) in request.session.keys():
+            print func
+            return func(request, *args, **kwargs)
         else:
-            redirect('/login')
+            return redirect('/blog/login')
+    return inner
 
 

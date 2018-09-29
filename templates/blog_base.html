@@ -37,6 +37,7 @@
       <div class="blog-masthead" style="background-color: white;">
           <nav class="blog-nav">
             <a class="blog-nav-title" href="/blog">轻博客</a>
+            {% block nav-bar %}
             <a class="blog-nav-item" href="/blog">热点博客</a>
             <a class="blog-nav-item" href="https://v3.bootcss.com/examples/blog/#">关注博客</a>
             <a class="blog-nav-item" href="/blog/user/{{ user_info.nick_name }}">我的博客</a>
@@ -45,6 +46,7 @@
             {% else %}
                <a class="blog-nav-user" href="/blog/login">登陆</a>
             {% endif %}
+            {% endblock %}
           </nav>
       </div>
   </div>

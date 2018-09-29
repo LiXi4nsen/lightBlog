@@ -1,0 +1,30 @@
+{% extends "blog_base.html" %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block css %}
+    <link href="/static/css/article_detail.css" rel="stylesheet">
+{% endblock %}
+
+{% block nav-bar %}
+    <a class="blog-nav-user">关注作者</a>
+    <a class="blog-nav-user">现在创作</a>
+{% endblock %}
+
+{% block page %}
+    <div class="article-box">
+        <div class="author-profile">
+
+        </div>
+        <div class="article-content">
+            <div class="article-text">{{ article.content }}</div>
+            <span class="create-time">
+                {{ article.create_time }}
+            </span>
+        </div>
+
+    </div>
+
+{% endblock %}

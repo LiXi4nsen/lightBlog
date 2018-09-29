@@ -16,6 +16,9 @@
 .blog-post-sum {
   width: 610px;
 }
+.blog-post-sum a {
+  color: black;
+}
 .post-box{
   width: 1037px;
 }
@@ -161,6 +164,7 @@
   margin-top: 1px;
   font-size: 25px;
   width: 60%;
+  color: black;
 }
 .blog-post-meta {
   margin-bottom: 20px;

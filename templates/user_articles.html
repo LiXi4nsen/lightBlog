@@ -10,7 +10,6 @@
 {% block page %}
   <div class="page-box">
 
-
     <div class="user-profile" style="background-color: white;">
       <div class="background">
         <div class="avatar-border">
@@ -49,9 +48,9 @@
                 <img src="{{ article.author.avatar }}" class="blog-post-avatar">
                 <a>{{ article.author.nick_name }}</a>
             </div>
-            <p class="blog-post-title">{{ article.title }}</p>
+            <a class="blog-post-title" target="_blank" href="">{{ article.title }}</a>
             <p class="blog-post-meta">{{ article.create_time }}</p>
-            <div class="blog-post-sum"><a href="">{{ article.content }}</a></div>
+            <div class="blog-post-sum"><a href="" target="_blank">{{ article.content }}...</a></div>
             <p></p>
             <hr>
             <div class="blog-post-box">

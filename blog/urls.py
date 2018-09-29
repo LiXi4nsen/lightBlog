@@ -23,5 +23,7 @@ urlpatterns = [
     url(r'login$', views.blog_login, name='login'),
     url(r'logout$', views.blog_logout, name='logout'),
     url(r'user/(.+?)', views.user_article, name='user-article'),
+    url(r'user', views.user_article, name='user-article'),
+    url(r'article/(\d+?)/detail', views.article_detail, name='article-detail'),
     url(r'test', views.test),
 ]
