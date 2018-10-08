@@ -1,0 +1,83 @@
+{% extends "blog_base.html" %}
+
+{% block title %}
+    写文章
+{% endblock %}
+
+{% block css %}
+    <link href="/static/css/article_edit.css" rel="stylesheet">
+{% endblock %}
+
+{% block nav-bar %}
+
+    <a class="pop-out">发布博客</a>
+    <a class="save-state" style="margin-right: 745px;"></a>
+{% endblock %}
+
+{% block page %}
+    <div class="title-edit">
+        <input type="text" class="title" placeholder="请输入标题" name="title">
+    </div>
+    <div id="editor" style="background-color: white;">
+        <div id="editor-bar">
+            <div id="editor-tool">
+
+            </div>
+        </div>
+        <div id="editor-content">
+
+        </div>
+        <div class="footer-background">
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="/static/js/wangEditor.min.js"></script>
+    <script type="text/javascript">
+        var E = window.wangEditor
+        var editor = new E('#editor-tool', '#editor-content')
+        editor.customConfig.zIndex = 1
+        editor.customConfig.pasteFilterStyle = false
+        editor.customConfig.overFlow = false
+
+        $(".w-e-text").css('overflow-y', 'hidden')
+
+        editor.customConfig.onchange = function(html){
+            var title = $(".title").val()
+            var content = editor.txt.html()
+
+            $('.save-state').text('草稿保存中')
+
+            $.ajaxSetup({
+                data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+            });
+
+            $.ajax({
+                url: '/blog/article/edit',
+                type: 'post',
+                data: {'title': title,
+                       'content': content},
+                success: function(data){
+                    $('.save-state').delay(1500).text('保存完毕')
+                }
+            })
+        }
+
+        editor.create()
+
+        $('.pop-out').click(function(){
+            $.ajax({
+                url: '/blog/article/edit',
+                type: 'post',
+                data: {'pop': 'pop'},
+                success: function(data){
+                    window.location.href = '/blog'
+                }
+            })
+        })
+
+    </script>
+{% endblock %}

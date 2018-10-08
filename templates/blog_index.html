@@ -26,9 +26,9 @@
                 <img src="{{ article.author.avatar }}" class="blog-post-avatar">
                 <a>{{ article.author.nick_name }}</a>
             </div>
-            <a class="blog-post-title" href="blog/article/{{ article.id }}/detail" target="_blank">{{ article.title }}</a>
+            <a class="blog-post-title" href="/blog/article/{{ article.id }}/detail" target="_blank">{{ article.title }}</a>
             <p class="blog-post-meta">{{ article.create_time }}</p>
-            <div class="blog-post-sum"><a href="" target="_blank">{{ article.content }}...</a></div>
+            <div class="blog-post-sum"><a href="/blog/article/{{ article.id }}/detail" target="_blank">{{ article.content }}...</a></div>
             <p></p>
             <hr>
             <div class="blog-post-box">

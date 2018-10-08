@@ -13,6 +13,8 @@ from utils import AuthIt
 from utils import check_cookie
 import json
 import random
+import redis
+import time
 
 
 validate_dict = {}
@@ -32,6 +34,7 @@ def blog_index(request):
             return render(request, 'blog_index.html', {'articles': articles})
 
 
+# 展示用户博客
 @check_cookie
 def user_article(request, *args):
 
@@ -42,6 +45,7 @@ def user_article(request, *args):
                                                       'articles': articles})
 
 
+# 展示博客全文
 @check_cookie
 def article_detail(request, article_id):
     if request.method == 'GET':
@@ -49,6 +53,46 @@ def article_detail(request, article_id):
         user_info = json.loads(request.session.get(request.COOKIES.get('login_cookie', None), None))
         return render(request, 'article_detail.html', {'user_info': user_info,
                                                        'article': article})
+
+
+# 编辑博客页面
+@check_cookie
+def article_edit(request):
+    # 创建redis连接池
+    pool = redis.ConnectionPool(host='127.0.0.1', port=6379, decode_responses=True, db=0)
+    # 创建链接
+    draft = redis.Redis(connection_pool=pool)
+    # 创建redis缓存草稿的key
+    user_info = json.loads(request.session.get(request.COOKIES.get('login_cookie', None), None))
+    key = user_info['nick_name']
+
+    if request.method == 'GET':
+        return render(request, 'article_edit.html', {'user_info': user_info})
+    else:
+        # 文章草稿存入redis中
+        if request.POST.get('content', False):
+            title = request.POST.get('title')
+            content = request.POST.get('content')
+            draft.hset(key, 'title', title)
+            draft.hset(key, 'content', content)
+            draft.expire(key, 1800)
+
+            return HttpResponse('保存完毕')
+        # 当用户发布文章后，将文章从redis中取出存入mysql
+        elif request.POST.get('pop', False):
+            title = draft.hget(key, 'title')
+            content = draft.hget(key, 'content')
+            user = models.UserProfile.objects.filter(nick_name=user_info['nick_name']).first()
+
+            print title
+
+            article = models.Article.objects.create(title=title,
+                                                    content=content,
+                                                    author=user,
+                                                    create_time=time.time())
+            article.save()
+
+            return HttpResponse('发布成功')
 
 
 # 注册博客

@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'logout$', views.blog_logout, name='logout'),
     url(r'user/(.+?)', views.user_article, name='user-article'),
     url(r'user', views.user_article, name='user-article'),
-    url(r'article/(\d+?)/detail', views.article_detail, name='article-detail'),
+    url(r'article/(\d+?)/detail$', views.article_detail, name='article-detail'),
+    url(r'article/edit$', views.article_edit, name='article-edit'),
     url(r'test', views.test),
 ]

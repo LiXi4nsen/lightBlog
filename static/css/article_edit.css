@@ -1,0 +1,56 @@
+#editor {
+  height: auto;
+  width: 800px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+#editor-content {
+  height: auto;
+  width: 800px;
+  padding-top: 40px;
+  padding-bottom: 10px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.w-e-toolbar {
+  position: fixed;
+  z-index: 10;
+  margin-top: 10px;
+  margin-left: 15px;
+  background-color: white;
+  width: 800px;
+}
+.title-edit {
+  width: 800px;
+  height: 50px;
+  margin: auto;
+  margin-top: 10px;
+   radio: 4px;
+}
+.title {
+  border: none;
+  width: 800px;
+  height: 50px;
+  margin: auto;
+  outline:medium;
+  font-size: 25px;
+  text-indent: 15px;
+}
+.pop-out {
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    border-radius: 3px;
+    float: right;
+    margin-right: 8px;
+    margin-top: 8px;
+}
+

@@ -28,15 +28,47 @@
   border-radius: 4px;
 }
 .article-content {
-  width: 690px;
+  width: 670px;
   margin-left: 115px;
   margin-top: 10px;
   background-color: white;
   border-radius: 4px;
+  padding: 10px;
 }
 .article-text {
   padding: 20px;
 }
 .create-time {
-  padding: 20px;
+  position: inline-block;
+  height: 20px;
+  margin: 20px;
+  padding-bottom: 20px;
+}
+.post-author-avatar {
+  float: left;
+  margin-left: 5px;
+  margin-top: 5px;
+  height: 40px;
+  width: 40px;
+  border-radius: 4px;
+}
+.post-author-nickname {
+  margin-top: 5px;
+  margin-left: 5px;
+  float: left;
+}
+.follow-author {
+    display: inline-block;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 32px;
+    color: #8590a6;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    border: 1px solid;
+    border-radius: 3px;
+    float: right;
+    margin-right: 8px;
+    margin-top: 8px;
 }

@@ -9,14 +9,16 @@
 {% endblock %}
 
 {% block nav-bar %}
-    <a class="blog-nav-user">关注作者</a>
+    <a class="blog-nav-user">关注文章</a>
     <a class="blog-nav-user">现在创作</a>
 {% endblock %}
 
 {% block page %}
     <div class="article-box">
         <div class="author-profile">
-
+            <a><img src="{{ article.author.avatar }}" class="post-author-avatar"></a>
+            <a href="/blog/user/{{ article.author.nick_name }}" class="post-author-nickname">{{ article.author.nick_name }}</a>
+            <a class="follow-author">关注作者</a>
         </div>
         <div class="article-content">
             <div class="article-text">{{ article.content }}</div>

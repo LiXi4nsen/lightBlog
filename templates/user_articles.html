@@ -38,7 +38,7 @@
             <div class="nav-button"><a>评论</a></div>
             <div class="nav-button"><a>关注</a></div>
             <div class="nav-button"><a>收藏</a></div>
-            <button class="write-button">写博客</button>
+            <a class="write-button" href="/blog/article/edit" target="_blank">写博客</a>
           </div>
         <br>
 
@@ -48,9 +48,9 @@
                 <img src="{{ article.author.avatar }}" class="blog-post-avatar">
                 <a>{{ article.author.nick_name }}</a>
             </div>
-            <a class="blog-post-title" target="_blank" href="">{{ article.title }}</a>
+            <a class="blog-post-title" target="_blank" href="/blog/article/{{ article.id }}/detail">{{ article.title }}</a>
             <p class="blog-post-meta">{{ article.create_time }}</p>
-            <div class="blog-post-sum"><a href="" target="_blank">{{ article.content }}...</a></div>
+            <div class="blog-post-sum"><a href="/blog/article/{{ article.id }}/detail" target="_blank">{{ article.content }}...</a></div>
             <p></p>
             <hr>
             <div class="blog-post-box">
