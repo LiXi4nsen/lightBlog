@@ -40,15 +40,51 @@
             </div>
           </div><!-- /.blog-post -->
         {% endfor %}
-        <nav>
-          <ul class="pager">
-            <li><a href="https://v3.bootcss.com/examples/blog/#">Previous</a></li>
-            <li><a href="https://v3.bootcss.com/examples/blog/#">Next</a></li>
-          </ul>
-        </nav>
         </div><!-- /.blog-main -->
 
       </div>
     </div>
   </div>
+{% endblock %}
+
+{% block js %}
+<script>
+    window.onscroll = function() {
+        var page = $('.blog-post').length/5
+        console.log(page)
+        var scroll_height = $(document).scrollTop()
+        var doc_height = $(document).height()
+        var screen_height = $(window).height()
+        if ((doc_height-scroll_height) <= screen_height){
+
+            $.ajaxSetup({
+                data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+            });
+
+            $.ajax({
+                url: '/blog',
+                type: 'post',
+                data: {'page': page},
+                success: function(data){
+                    if (data != 'max'){
+                        $('.blog-main').append(data)
+                    }
+                    else{
+                        if ($('.page-bottom').length == 0){
+                            $('.blog-main').append('<div class="page-bottom">'
+                                             + '<p class="bottom-text">更多精彩内容等你创造!</p>'
+                                             + '<div>')
+                        }
+                        else{
+                            return false;
+                        }
+
+                    }
+                }
+            })
+        }
+    }
+</script>
+
+
 {% endblock %}

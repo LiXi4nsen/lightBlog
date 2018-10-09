@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.shortcuts import HttpResponse
+from django.core.paginator import Paginator
+from django.core import serializers
 from django.contrib.auth.hashers import make_password, check_password
 from blog import models
 from forms import RegisterForm
@@ -23,15 +25,25 @@ validate_dict = {}
 # 博客首页
 def blog_index(request):
 
+    index_page = 1
+    articles = models.Article.objects.all()
+    paginator = Paginator(articles, 5)
     if request.method == 'GET':
         user_info = request.session.get(request.COOKIES.get('login_cookie', None), None)
-        articles = models.Article.objects.all()
         if user_info:
             user_info = json.loads(user_info)
             return render(request, 'blog_index.html', {'user_info': user_info,
-                                                       'articles': articles})
+                                                       'articles': paginator.page(index_page).object_list})
         else:
-            return render(request, 'blog_index.html', {'articles': articles})
+            return render(request, 'blog_index.html', {'articles': paginator.page(index_page).object_list})
+    else:
+        if request.is_ajax():
+            page = int(request.POST.get('page', None))
+            if page <= paginator.num_pages:
+                page_data = paginator.page(page).object_list
+                return render(request, 'blog_contain.html', {'articles': page_data})
+            else:
+                return HttpResponse('max')
 
 
 # 展示用户博客
@@ -73,7 +85,6 @@ def article_edit(request):
             data = {'title': title,
                     'content': content}
             data = json.dumps(data)
-            print 'ok'
             return HttpResponse(data)
         else:
             return render(request, 'article_edit.html', {'user_info': user_info})

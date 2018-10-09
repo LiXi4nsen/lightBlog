@@ -71,6 +71,7 @@
             $.ajax({
                 url: '/blog/article/edit',
                 type: 'post',
+                dataType: 'json',
                 data: {'pop': 'pop'},
                 success: function(data){
                     window.location.href = '/blog'

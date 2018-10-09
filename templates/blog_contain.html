@@ -1,0 +1,20 @@
+{% for article in articles %}
+    <div class="blog-post">
+        <div class="blog-post-author">
+            <img src="{{ article.author.avatar }}" class="blog-post-avatar">
+            <a>{{ article.author.nick_name }}</a>
+        </div>
+        <a class="blog-post-title" href="/blog/article/{{ article.id }}/detail" target="_blank">{{ article.title }}</a>
+        <p class="blog-post-meta">{{ article.create_time }}</p>
+        <div class="blog-post-sum"><a href="/blog/article/{{ article.id }}/detail" target="_blank">{% autoescape off %}{{ article.content }}{% endautoescape %}...</a></div>
+        <p></p>
+        <hr>
+        <div class="blog-post-box">
+          <div class="blog-post-button"><a>点赞</a></div>
+          <div class="blog-post-button"><a>反对</a></div>
+          <div class="blog-post-button"><a>评论</a></div>
+          <div class="blog-post-button"><a>收藏</a></div>
+          <div class="blog-post-button"><a>分享</a></div>
+        </div>
+    </div>
+{% endfor %}
