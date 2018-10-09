@@ -43,8 +43,6 @@
         editor.customConfig.pasteFilterStyle = false
         editor.customConfig.overFlow = false
 
-        $(".w-e-text").css('overflow-y', 'hidden')
-
         editor.customConfig.onchange = function(html){
             var title = $(".title").val()
             var content = editor.txt.html()
@@ -67,6 +65,7 @@
         }
 
         editor.create()
+        $(".w-e-text").css('overflow-y', 'hidden')
 
         $('.pop-out').click(function(){
             $.ajax({
@@ -78,6 +77,24 @@
                 }
             })
         })
+
+        function getBlogHtml(){
+        var saveTime = new Date();
+
+            $.ajax({
+                url: '/blog/article/edit',
+                type: 'get',
+                dataType: 'json',
+                success: function(data){
+                    if(data != false){
+                        $('.title').val(data.title)
+                        editor.txt.html(data.content)
+                        $('.save-state').delay(1500).text('保存于 ' + String(saveTime.getHours()) + ':' + String(saveTime.getMinutes()))
+                    }
+                }
+            })
+        }
+        getBlogHtml();
 
     </script>
 {% endblock %}

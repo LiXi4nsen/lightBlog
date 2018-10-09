@@ -10,7 +10,7 @@ class Article(models.Model):
 
     title = models.CharField(max_length=32, verbose_name='文章标题')
     content = models.TextField(verbose_name='文章内容')
-    create_time = models.DateTimeField(auto_created=True, verbose_name='创建时间', null=True)
+    create_time = models.DateTimeField(auto_now=True, verbose_name='创建时间', null=True)
     author = models.ForeignKey('UserProfile')
 
     class META:

@@ -67,7 +67,16 @@ def article_edit(request):
     key = user_info['nick_name']
 
     if request.method == 'GET':
-        return render(request, 'article_edit.html', {'user_info': user_info})
+        if request.is_ajax():
+            title = draft.hget(key, 'title')
+            content = draft.hget(key, 'content')
+            data = {'title': title,
+                    'content': content}
+            data = json.dumps(data)
+            print 'ok'
+            return HttpResponse(data)
+        else:
+            return render(request, 'article_edit.html', {'user_info': user_info})
     else:
         # 文章草稿存入redis中
         if request.POST.get('content', False):
@@ -84,13 +93,12 @@ def article_edit(request):
             content = draft.hget(key, 'content')
             user = models.UserProfile.objects.filter(nick_name=user_info['nick_name']).first()
 
-            print title
-
             article = models.Article.objects.create(title=title,
                                                     content=content,
-                                                    author=user,
-                                                    create_time=time.time())
+                                                    author=user)
             article.save()
+
+            draft.hdel(key, 'pop', 'title', 'content')
 
             return HttpResponse('发布成功')
 

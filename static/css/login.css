@@ -43,3 +43,9 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.register{
+  position: inline-block;
+  width: 300px;
+  margin: auto;
+  padding-left: 200px;
+}
