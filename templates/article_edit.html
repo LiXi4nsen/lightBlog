@@ -40,7 +40,7 @@
         var E = window.wangEditor
         var editor = new E('#editor-tool', '#editor-content')
         editor.customConfig.zIndex = 1
-        editor.customConfig.pasteFilterStyle = false
+        editor.customConfig.pasteFilterStyle = true
         editor.customConfig.overFlow = false
 
         editor.customConfig.onchange = function(html){
@@ -73,7 +73,8 @@
                 type: 'post',
                 dataType: 'json',
                 data: {'pop': 'pop'},
-                success: function(data){
+                complete: function(data){
+
                     window.location.href = '/blog'
                 }
             })

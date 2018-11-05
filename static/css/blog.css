@@ -31,19 +31,6 @@
   box-shadow: 0 1px 3px rgba(26,26,26,.1);
 }
 
-.blog-header a {
-  float: left;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 12px;
-  margin-bottom: 6px;
-}
-
-.blog-header a:hover,
-.blog-header a:focus {
-    font-weight: bold;
-}
-
 /*
  * Main column and sidebar layout
  */
@@ -123,7 +110,16 @@
   box-shadow: 0 1px 3px rgba(26,26,26,.1);
   z-index: 2;
 }
-
+.right-block div{
+  width: 90px;
+  height: 90px;
+  float: left;
+  text-align: center;
+  align-items: center;
+  margin: 5px;
+  line-height: 80px;
+  box-shadow: 0 1px 3px rgba(26,26,26,.1);
+}
 
 /*
  * Footer

@@ -26,7 +26,7 @@ validate_dict = {}
 def blog_index(request):
 
     index_page = 1
-    articles = models.Article.objects.all()
+    articles = models.Article.objects.all()[:5]
     paginator = Paginator(articles, 5)
     if request.method == 'GET':
         user_info = request.session.get(request.COOKIES.get('login_cookie', None), None)
@@ -38,9 +38,12 @@ def blog_index(request):
             return render(request, 'blog_index.html', {'articles': paginator.page(index_page).object_list})
     else:
         if request.is_ajax():
-            page = int(request.POST.get('page', None))
-            if page <= paginator.num_pages:
-                page_data = paginator.page(page).object_list
+            page = float(request.POST.get('page', None))
+            articles = models.Article.objects.all()[page * 5:page * 5 + 5]
+            paginator = Paginator(articles, 5)
+            if paginator.count != 0:
+
+                page_data = paginator.page(1).object_list
                 return render(request, 'blog_contain.html', {'articles': page_data})
             else:
                 return HttpResponse('max')
@@ -103,12 +106,16 @@ def article_edit(request):
             title = draft.hget(key, 'title')
             content = draft.hget(key, 'content')
             user = models.UserProfile.objects.filter(nick_name=user_info['nick_name']).first()
-
+            summary = content[:300] + "..."
+            article_content = models.ArticleContent.objects.create(content=content)
+            article_content.save()
             article = models.Article.objects.create(title=title,
-                                                    content=content,
-                                                    author=user)
-            article.save()
+                                                    content=summary,
+                                                    author=user,
+                                                    whole=article_content)
 
+            article.save()
+            print 'okok'
             draft.hdel(key, 'pop', 'title', 'content')
 
             return HttpResponse('发布成功')
@@ -149,11 +156,13 @@ def blog_register(request):
                 if user_info.get('password') == user_info.get('password2'):
                     if request.POST.get('validate') == request.session[str(user_info.get('email')+' register')]:
                         default_avatar_number = random.randint(1, 14)
+                        default_role = models.Role.objects.filter(role_name='customer').first()
                         user = models.UserProfile.objects.create(email=user_info.get('email'),
                                                                  password=make_password(user_info.get('password')),
                                                                  nick_name=user_info.get('email'),
                                                                  avatar='/static/img/avatar/user_default_avatar' +
-                                                                        str(default_avatar_number) + '.jpg')
+                                                                        str(default_avatar_number) + '.jpg',
+                                                                 role=default_role)
                         user.save()
         return redirect('/blog')
 
@@ -196,7 +205,7 @@ def blog_login(request):
                         rep = redirect('/blog')
                         rep.set_cookie('login_cookie', login_cookie, max_age=36000)
                         # 将用户信息放入session中
-                        request.session[login_cookie] = models.UserProfile.objects.get(email=email).to_json()
+                        request.session[login_cookie] = models.UserProfile.objects.get(email=email).get_info()
                         return rep
 
 

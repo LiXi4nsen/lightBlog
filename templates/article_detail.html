@@ -21,7 +21,7 @@
             <a class="follow-author">关注作者</a>
         </div>
         <div class="article-content">
-            <div class="article-text">{% autoescape off %}{{ article.content }}{% endautoescape %}</div>
+            <div class="article-text">{% autoescape off %}{{ article.whole.content }}{% endautoescape %}</div>
             <span class="create-time">
                 {{ article.create_time }}
             </span>

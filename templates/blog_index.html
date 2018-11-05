@@ -9,37 +9,19 @@
 {% block page %}
   <div class="page-box">
     <div class="right-block">
-
+      <div class="last-browse">
+        <span>上次看到</span>
+      </div>
+      <div class="user-draft">
+        <span>草稿</span>
+      </div>
     </div>
     <div class="post-box">
-      <div class="blog-header" style="background-color: white;">
-        <a>上次看到</a>
-        <a>草稿</a>
-      </div>
 
       <div class="row">
 
         <div class="blog-main">
-        {% for article in articles %}
-          <div class="blog-post">
-            <div class="blog-post-author">
-                <img src="{{ article.author.avatar }}" class="blog-post-avatar">
-                <a>{{ article.author.nick_name }}</a>
-            </div>
-            <a class="blog-post-title" href="/blog/article/{{ article.id }}/detail" target="_blank">{{ article.title }}</a>
-            <p class="blog-post-meta">{{ article.create_time }}</p>
-            <div class="blog-post-sum"><a href="/blog/article/{{ article.id }}/detail" target="_blank">{% autoescape off %}{{ article.content }}{% endautoescape %}...</a></div>
-            <p></p>
-            <hr>
-            <div class="blog-post-box">
-              <div class="blog-post-button"><a>点赞</a></div>
-              <div class="blog-post-button"><a>反对</a></div>
-              <div class="blog-post-button"><a>评论</a></div>
-              <div class="blog-post-button"><a>收藏</a></div>
-              <div class="blog-post-button"><a>分享</a></div>
-            </div>
-          </div><!-- /.blog-post -->
-        {% endfor %}
+          {% include "blog_contain.html" %}
         </div><!-- /.blog-main -->
 
       </div>
